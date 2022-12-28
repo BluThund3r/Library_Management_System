@@ -17,5 +17,7 @@ namespace Library_Management_System.Models
         [Required]
         [Range(0, double.MaxValue, ErrorMessage = "Pretul trebuie sa fie pozitiv")]
         public double Price { get; set; }
+
+        public ICollection<UserBorrowsCopy> UsersBorrowCopies { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace Library_Management_System.Models
         [Range(10, 100)]
         public int Age { get; set; }
 
-        public ICollection<AuthorsWriteBooks> AuthorsNameBooks { get; set; }
+        public ICollection<AuthorsWriteBooks> AuthorsWriteBooks { get; set; }
 
     }
 }

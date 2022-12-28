@@ -28,5 +28,8 @@ namespace Library_Management_System.Models
         public Role Role { get; set; }
 
         public SubscriptionCard? Card { get; set; }
+
+        public ICollection<UserBorrowsCopy> UsersBorrowCopies { get; set; }
+
     }
 }
