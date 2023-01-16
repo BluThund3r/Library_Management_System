@@ -1,6 +1,7 @@
 ﻿using Library_Management_System.Models.Enums;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Library_Management_System.Models
 { 
@@ -24,6 +25,8 @@ namespace Library_Management_System.Models
 
         public string? PhoneNumber { get; set; }
 
+        public string City { get; set; }
+
         [Required]
         public Role Role { get; set; }
 
@@ -31,5 +34,7 @@ namespace Library_Management_System.Models
 
         public ICollection<UserBorrowsCopy> UsersBorrowCopies { get; set; }
 
+        [JsonIgnore]
+        public string PasswordHash { get; set; }
     }
 }
