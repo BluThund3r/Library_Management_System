@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Library_Management_System.Data;
 using Library_Management_System.Repositories.AuthorRepository;
 using Library_Management_System.Helpers.Extensions;
+using Library_Management_System.Helpers.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 builder.Services.AddRepositories();
 builder.Services.AddServices();
-//AddSeeders
+builder.Services.AddSeeders();
+
 // AddUtils
 var app = builder.Build();
 app.UseSwagger();
@@ -46,3 +48,36 @@ app.MapControllerRoute(
 app.MapFallbackToFile("index.html"); ;
 
 app.Run();
+
+
+void SeedData(IHost app)
+{
+    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+
+    using (var scope = scopedFactory.CreateScope())
+    {
+        var service = scope.ServiceProvider.GetService<AuthorSeeder>();
+        service.SeedInitialAuthors();
+
+        var service1 = scope.ServiceProvider.GetService<PublisherSeeder>();
+        service1.SeedInitialPublishers();
+
+        var service2 = scope.ServiceProvider.GetService<BookSeeder>();
+        service2.SeedInitialBooks();
+
+        var service3 = scope.ServiceProvider.GetService<AuthorsWriteBooksSeeder>();
+        service3.SeedInitialAuthorsWriteBooks();
+
+        var service4 = scope.ServiceProvider.GetService<BookCopySeeder>();
+        service4.SeedInitialBookCopies();
+
+        var service5 = scope.ServiceProvider.GetService<UserSeeder>();
+        service5.SeedInitialUsers();
+
+        var service6 = scope.ServiceProvider.GetService<UserBorrowsCopySeeder>();
+        service6.SeedInitialUserBorrowsCopies();
+
+        var service7 = scope.ServiceProvider.GetService<SubscriptionCardSeeder>();
+        service7.SeedInitialSubscriptionCards();
+    }
+}

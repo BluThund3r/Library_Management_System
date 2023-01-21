@@ -27,13 +27,16 @@ namespace Library_Management_System.Data
             modelBuilder.Entity<Book>()
                 .HasOne<Publisher>(b => b.Publisher)
                 .WithMany(p => p.Books)
-                .HasForeignKey(b => b.PublisherId);
+                .HasForeignKey(b => b.PublisherId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // BookCopies -> Book
             modelBuilder.Entity<BookCopy>()
                 .HasOne<Book>(bc => bc.Book)
                 .WithMany(b => b.BookCopies)
-                .HasForeignKey(bc => bc.BookId);
+                .HasForeignKey(bc => bc.BookId)
+                .OnDelete(DeleteBehavior.Cascade);
+
 
 
             // MANY TO MANY
@@ -45,12 +48,16 @@ namespace Library_Management_System.Data
             modelBuilder.Entity<AuthorsWriteBooks>()
                 .HasOne<Author>(awb => awb.Author)
                 .WithMany(a => a.AuthorsWriteBooks)
-                .HasForeignKey(awb => awb.AuthorId);
+                .HasForeignKey(awb => awb.AuthorId)
+                .OnDelete(DeleteBehavior.Cascade);
+
 
             modelBuilder.Entity<AuthorsWriteBooks>()
                 .HasOne<Book>(awb => awb.Book)
                 .WithMany(b => b.AuthorsWriteBooks)
-                .HasForeignKey(awb => awb.BookId);
+                .HasForeignKey(awb => awb.BookId)
+                .OnDelete(DeleteBehavior.Cascade);
+
 
 
             // BookCopies <- UsersBorrowCopies -> Users
@@ -60,12 +67,14 @@ namespace Library_Management_System.Data
             modelBuilder.Entity<UserBorrowsCopy>()
                 .HasOne<User>(ubc => ubc.User)
                 .WithMany(u => u.UsersBorrowCopies)
-                .HasForeignKey(ubc => ubc.UserId);
+                .HasForeignKey(ubc => ubc.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<UserBorrowsCopy>()
                 .HasOne<BookCopy>(ubc => ubc.Copy)
                 .WithMany(c => c.UsersBorrowCopies)
-                .HasForeignKey(ubc => ubc.CopyId);
+                .HasForeignKey(ubc => ubc.CopyId)
+                .OnDelete(DeleteBehavior.Cascade);
 
 
             // ONE TO ONE
@@ -74,7 +83,8 @@ namespace Library_Management_System.Data
             modelBuilder.Entity<SubscriptionCard>()
                 .HasOne(sc => sc.User)
                 .WithOne(u => u.Card)
-                .HasForeignKey<User>(u => u.Id);   
+                .HasForeignKey<SubscriptionCard>(sc => sc.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(modelBuilder);
         }

@@ -4,6 +4,7 @@ using Library_Management_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryManagementSystem.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20230116091512_add_user_city")]
+    partial class addusercity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -192,9 +195,6 @@ namespace LibraryManagementSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
                     b.ToTable("SubscriptionCards");
                 });
 
@@ -313,15 +313,15 @@ namespace LibraryManagementSystem.Migrations
                     b.Navigation("Book");
                 });
 
-            modelBuilder.Entity("Library_Management_System.Models.SubscriptionCard", b =>
+            modelBuilder.Entity("Library_Management_System.Models.User", b =>
                 {
-                    b.HasOne("Library_Management_System.Models.User", "User")
-                        .WithOne("Card")
-                        .HasForeignKey("Library_Management_System.Models.SubscriptionCard", "UserId")
+                    b.HasOne("Library_Management_System.Models.SubscriptionCard", "Card")
+                        .WithOne("User")
+                        .HasForeignKey("Library_Management_System.Models.User", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Card");
                 });
 
             modelBuilder.Entity("Library_Management_System.Models.UserBorrowsCopy", b =>
@@ -365,10 +365,14 @@ namespace LibraryManagementSystem.Migrations
                     b.Navigation("Books");
                 });
 
+            modelBuilder.Entity("Library_Management_System.Models.SubscriptionCard", b =>
+                {
+                    b.Navigation("User")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Library_Management_System.Models.User", b =>
                 {
-                    b.Navigation("Card");
-
                     b.Navigation("UsersBorrowCopies");
                 });
 #pragma warning restore 612, 618
