@@ -18,38 +18,38 @@ namespace Library_Management_System.Helpers.Seeders
             {
                 var awb1 = new AuthorsWriteBooks
                 {
-                    AuthorId = context.Authors.First(a => a.FirstName.Equals("Pierce")).Id,
-                    BookId = context.Books.First(b => b.Title.ToLower().Equals("red rising")).Id
+                    AuthorId = context.Authors.FirstOrDefault(a => a.FirstName.Equals("Pierce")).Id,
+                    BookId = context.Books.FirstOrDefault(b => b.Title.ToLower().Equals("red rising")).Id
                 };
 
                 var awb2 = new AuthorsWriteBooks
                 {
-                    AuthorId = context.Authors.First(a => a.FirstName.Equals("Pierce")).Id,
-                    BookId = context.Books.First(b => b.Title.ToLower().Equals("golden son")).Id
+                    AuthorId = context.Authors.FirstOrDefault(a => a.FirstName.Equals("Pierce")).Id,
+                    BookId = context.Books.FirstOrDefault(b => b.Title.ToLower().Equals("golden son")).Id
                 };
 
                 var awb3 = new AuthorsWriteBooks
                 {
-                    AuthorId = context.Authors.First(a => a.FirstName.Equals("Sabaa")).Id,
-                    BookId = context.Books.First(b => b.Title.Equals("Elias Si Spioana Carturarilor: O torta in noapte")).Id
+                    AuthorId = context.Authors.FirstOrDefault(a => a.FirstName.Equals("Sabaa")).Id,
+                    BookId = context.Books.FirstOrDefault(b => b.Title.Equals("Elias Si Spioana Carturarilor: O torta in noapte")).Id
                 };
 
                 var awb4 = new AuthorsWriteBooks
                 {
-                    AuthorId = context.Authors.First(a => a.FirstName.Equals("Sabaa")).Id,
-                    BookId = context.Books.First(b => b.Title.Equals("Elias Si Spioana Carturarilor: Focul din cenusa")).Id
+                    AuthorId = context.Authors.FirstOrDefault(a => a.FirstName.Equals("Sabaa")).Id,
+                    BookId = context.Books.FirstOrDefault(b => b.Title.Equals("Elias Si Spioana Carturarilor: Focul din cenusa")).Id
                 };
 
                 var awb5 = new AuthorsWriteBooks
                 {
-                    AuthorId = context.Authors.First(a => a.FirstName.Equals("Suzanne")).Id,
-                    BookId = context.Books.First(b => b.Title.Equals("Jocurile Foamei")).Id
+                    AuthorId = context.Authors.FirstOrDefault(a => a.FirstName.Equals("Suzanne")).Id,
+                    BookId = context.Books.FirstOrDefault(b => b.Title.Equals("Jocurile Foamei")).Id
                 };
 
                 var awb6 = new AuthorsWriteBooks
                 {
-                    AuthorId = context.Authors.First(a => a.FirstName.Equals("Suzanne")).Id,
-                    BookId = context.Books.First(b => b.Title.Equals("Mockingjay")).Id
+                    AuthorId = context.Authors.FirstOrDefault(a => a.FirstName.Equals("Suzanne")).Id,
+                    BookId = context.Books.FirstOrDefault(b => b.Title.Equals("Mockingjay")).Id
                 };
 
                 context.AuthorsWriteBooks.Add(awb1);

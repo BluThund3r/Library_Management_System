@@ -4,6 +4,7 @@ using Library_Management_System.Repositories.BookRepository;
 using Library_Management_System.Repositories.PublisherRepository;
 using Library_Management_System.Repositories.SubscriptionCardRepository;
 using Library_Management_System.Repositories.UserRepository;
+using Library_Management_System.Services.UserService;
 
 namespace Library_Management_System.Helpers.Extensions
 {
@@ -21,7 +22,7 @@ namespace Library_Management_System.Helpers.Extensions
 
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-
+            services.AddTransient<IUserService, UserService>();
             return services;
         }
 

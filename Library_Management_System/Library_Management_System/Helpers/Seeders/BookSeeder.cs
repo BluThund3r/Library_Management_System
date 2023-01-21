@@ -81,7 +81,7 @@ namespace Library_Management_System.Helpers.Seeders
                 context.Books.Add(book3);
                 context.Books.Add(book4);
                 context.Books.Add(book5);
-                context.Books.Add(book5);
+                context.Books.Add(book6);
                 context.SaveChanges();
             }
         }

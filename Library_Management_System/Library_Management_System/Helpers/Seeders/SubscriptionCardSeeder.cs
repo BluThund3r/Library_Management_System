@@ -19,22 +19,22 @@ namespace Library_Management_System.Helpers.Seeders
                 var sc1 = new SubscriptionCard
                 {
                     UserId = context.Users.FirstOrDefault(u => u.UserName.Equals("user1")).Id,
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now.AddYears(2)
+                    StartDate = DateTime.UtcNow,
+                    EndDate = DateTime.UtcNow.AddYears(2)
                 };
 
                 var sc2 = new SubscriptionCard
                 {
                     UserId = context.Users.FirstOrDefault(u => u.UserName.Equals("user2")).Id,
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now.AddYears(2)
+                    StartDate = DateTime.UtcNow,
+                    EndDate = DateTime.UtcNow.AddYears(2)
                 };
 
                 var sc3 = new SubscriptionCard
                 {
                     UserId = context.Users.FirstOrDefault(u => u.UserName.Equals("user3")).Id,
-                    StartDate = DateTime.Now,
-                    EndDate = DateTime.Now.AddYears(2)
+                    StartDate = DateTime.UtcNow,
+                    EndDate = DateTime.UtcNow.AddYears(2)
                 };
 
                 context.SubscriptionCards.Add(sc1);

@@ -69,10 +69,24 @@ namespace Library_Management_System.Helpers.Seeders
                     PasswordHash = "$2b$10$nn6kpwbw3jMxhpgrFzMdr.GkvyU4/JSR/f5Gn4kefjl.rhcK1bpJ."
                 };
 
+                var librarian1 = new User
+                {
+                    UserName = "librarian",
+                    FirstName = "librarianFN",
+                    LastName = "librarianLN",
+                    Age = 25,
+                    Email = "librarianEmail@gmail.com",
+                    PhoneNumber = "153458141",
+                    City = "Milan",
+                    Role = Models.Enums.Role.Librarian,
+                    PasswordHash = "$2b$10$yJ6nnI67LTpZubxjwRgvPubS6VyW/RYv0iHJgRDv.y0AcLn5369/u"
+                };
+
                 context.Users.Add(user1);
                 context.Users.Add(user2);
                 context.Users.Add(user3);
                 context.Users.Add(admin1);
+                context.Users.Add(librarian1);
                 context.SaveChanges();
             }
         }

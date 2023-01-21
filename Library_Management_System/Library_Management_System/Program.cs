@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Library_Management_System.Data;
-using Library_Management_System.Repositories.AuthorRepository;
 using Library_Management_System.Helpers.Extensions;
 using Library_Management_System.Helpers.Seeders;
+using Library_Management_System.Helpers.AppSettings;
+using Library_Management_System.Helpers.Middleware;
+using Library_Management_System.Helpers.JwtUtils;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +20,12 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddRepositories();
 builder.Services.AddServices();
 builder.Services.AddSeeders();
+builder.Services.AddTransient<IJwtUtils, JwtUtils>();
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
 // AddUtils
 var app = builder.Build();
+SeedData(app);
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
@@ -39,7 +44,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-
+app.UseMiddleware<JwtMiddleware>();
 
 app.MapControllerRoute(
     name: "default",

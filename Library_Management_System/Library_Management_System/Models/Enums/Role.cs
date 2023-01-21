@@ -3,7 +3,7 @@
     public enum Role
     {
         BasicUser,
-        Admin
-        // Librarian
+        Admin,
+        Librarian
     }
 }
