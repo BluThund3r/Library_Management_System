@@ -1,4 +1,5 @@
-﻿using Library_Management_System.Helpers.Seeders;
+﻿using Library_Management_System.Helpers.JwtUtils;
+using Library_Management_System.Helpers.Seeders;
 using Library_Management_System.Repositories.AuthorRepository;
 using Library_Management_System.Repositories.BookRepository;
 using Library_Management_System.Repositories.PublisherRepository;
@@ -37,6 +38,12 @@ namespace Library_Management_System.Helpers.Extensions
             services.AddScoped<UserSeeder>();
             services.AddScoped<SubscriptionCardSeeder>();
 
+            return services;
+        }
+
+        public static IServiceCollection AddUtils(this IServiceCollection services)
+        {
+            services.AddTransient<IJwtUtils, JwtUtils.JwtUtils>();
             return services;
         }
     }

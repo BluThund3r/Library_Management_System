@@ -5,6 +5,8 @@ using Library_Management_System.Helpers.Seeders;
 using Library_Management_System.Helpers.AppSettings;
 using Library_Management_System.Helpers.Middleware;
 using Library_Management_System.Helpers.JwtUtils;
+using AutoMapper;
+using Library_Management_System.Helpers.Mapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +22,10 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddRepositories();
 builder.Services.AddServices();
 builder.Services.AddSeeders();
-builder.Services.AddTransient<IJwtUtils, JwtUtils>();
+builder.Services.AddUtils();
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-// AddUtils
 var app = builder.Build();
 SeedData(app);
 app.UseSwagger();
