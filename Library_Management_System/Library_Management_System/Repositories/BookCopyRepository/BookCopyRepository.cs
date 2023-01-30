@@ -1,4 +1,5 @@
-﻿using Library_Management_System.Data;
+﻿using Azure.Core;
+using Library_Management_System.Data;
 using Library_Management_System.Models;
 using Library_Management_System.Models.Enums;
 using Library_Management_System.Repositories.GenericRepository;
@@ -11,6 +12,16 @@ namespace Library_Management_System.Repositories.BookCopyRepository
     public class BookCopyRepository: GenericRepository<BookCopy>, IBookCopyRepository
     {
         public BookCopyRepository(ApplicationContext context): base(context) { }
+
+        public BookCopy FindCopyOfBookIfAvailable(Guid bookId)
+        {
+            var borrowedCopies = table.Join(context.UsersBorrowCopies, bc => bc.Id, ubc => ubc.CopyId,
+                (bc, ubc) => new { bc, ubc }).Where(x => x.bc.BookId.Equals(bookId)).Select(x => x.bc).ToList();
+
+            var allCopies = table.Where(bc => bc.BookId.Equals(bookId));
+
+            return allCopies.FirstOrDefault(x => borrowedCopies.All(y => y.Id != x.Id));
+        }
 
         public List<BookCopy> GetBookCopiesByBookTitle(string title)
         {

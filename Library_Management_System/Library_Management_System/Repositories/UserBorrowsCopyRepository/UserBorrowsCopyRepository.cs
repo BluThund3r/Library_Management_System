@@ -55,9 +55,9 @@ namespace Library_Management_System.Repositories.UserBorrowsCopyRepository
             return await table.ToListAsync();
         }
 
-        public List<UserBorrowsCopy> GetAllByCopyId(Guid copyId)
+        public UserBorrowsCopy FindUserWithCopy(Guid copyId)
         {
-            return table.Where(x => x.CopyId.Equals(copyId)).ToList();
+            return table.FirstOrDefault(x => x.CopyId.Equals(copyId));
         }
 
         public List<UserBorrowsCopy> GetAllByUserId(Guid userId)
@@ -95,6 +95,11 @@ namespace Library_Management_System.Repositories.UserBorrowsCopyRepository
         public void UpdateRange(IEnumerable<UserBorrowsCopy> ubc)
         {
             table.UpdateRange(ubc);
+        }
+
+        public List<UserBorrowsCopy> GetAllInvalidByUserId(Guid userId)
+        {
+            return GetAllInvalid().Where(x => x.UserId.Equals(userId)).ToList();
         }
     }
 }

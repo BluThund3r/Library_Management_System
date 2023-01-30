@@ -10,10 +10,10 @@ namespace Library_Management_System.Repositories.UserRepository
     {
         public UserRepository(ApplicationContext context): base(context) { }
 
-        public List<User> GetByUserIdIncludeBooks(Guid id)
+        public User GetByUserIdIncludeBooks(Guid id)
         {
             var result = table.Include("UserBorrowsCopy").Include("BookCopy").Include("Books")
-                .Where(u => u.Id.Equals(id)).ToList();
+                .FirstOrDefault(u => u.Id.Equals(id));
             return result;
         }
 

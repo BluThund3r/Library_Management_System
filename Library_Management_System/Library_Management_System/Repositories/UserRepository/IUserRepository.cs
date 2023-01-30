@@ -5,7 +5,7 @@ namespace Library_Management_System.Repositories.UserRepository
 {
     public interface IUserRepository: IGenericRepository<User>
     {
-        public List<User> GetByUserIdIncludeBooks(Guid id);
+        public User GetByUserIdIncludeBooks(Guid id);
         public User GetByUserName(string userName);
         public List<User> GetByRole(string role);
         public List<User> GetUsersOlderThan(int age);

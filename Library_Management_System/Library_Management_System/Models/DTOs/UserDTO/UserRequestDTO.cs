@@ -13,6 +13,5 @@ namespace Library_Management_System.Models.DTOs.UserDTO
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
     }
 }

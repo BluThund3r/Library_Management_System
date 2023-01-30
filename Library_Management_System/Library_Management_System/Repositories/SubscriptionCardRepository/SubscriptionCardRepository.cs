@@ -8,7 +8,7 @@ namespace Library_Management_System.Repositories.SubscriptionCardRepository
     {
         public SubscriptionCardRepository(ApplicationContext context): base(context) { }
 
-        public List<SubscriptionCard> GetAllOrderedByUserName(string userName)
+        public List<SubscriptionCard> GetAllOrderedByUserName()
         {
             return table.Join(context.Users, sc => sc.UserId, u => u.Id,
                 (sc, u) => new { sc, u }).OrderBy(x => x.u.UserName).Select(x => x.sc).ToList();

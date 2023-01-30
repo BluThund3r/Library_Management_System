@@ -17,12 +17,12 @@ namespace Library_Management_System.Repositories.UserBorrowsCopyRepository
 
         public List<UserBorrowsCopy> GetAllByUserId(Guid userId);
 
-        public List<UserBorrowsCopy> GetAllByCopyId(Guid copyId);
+        public UserBorrowsCopy FindUserWithCopy(Guid copyId);
 
         public List<UserBorrowsCopy> GetAllValid();
 
         public List<UserBorrowsCopy> GetAllInvalid();
-
+        public List<UserBorrowsCopy> GetAllInvalidByUserId(Guid userId);
 
         // Update
         void Update(UserBorrowsCopy ubc);
