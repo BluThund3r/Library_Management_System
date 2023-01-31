@@ -1,33 +1,25 @@
 ﻿using AutoMapper;
-using Library_Management_System.Models;
-using Library_Management_System.Models.DTOs;
 using Library_Management_System.Models.DTOs.UserDTO;
-using Library_Management_System.Services.UserService;
+using Library_Management_System.Models.DTOs;
+using Library_Management_System.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Library_Management_System.Services.AuthorService;
 
 namespace Library_Management_System.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class TestController : ControllerBase
     {
-        public readonly IUserService userService;
-        public IMapper mapper;
+        public readonly IMapper mapper;
+        public readonly IAuthorService authorService;
 
-        public UserController(IUserService _userService, IMapper mapper)
+        public TestController(IMapper mapper, IAuthorService authorService)
         {
-            userService = _userService;
             this.mapper = mapper;
+            this.authorService = authorService;
         }
-
-
-        [HttpGet("getAllUsersAsync")]
-        public async Task<List<UserInfoDTO>> GetAllAsync()
-        {
-            return await userService.GetAllUsersAsync();
-        }
-
 
         [HttpGet("testSubscriptionCard")]
         public IActionResult getSubscriptionCard()
@@ -124,6 +116,33 @@ namespace Library_Management_System.Controllers
             };
 
             return Ok(mapper.Map<UserInfoDTO>(a));
+        }
+
+        [HttpPost("addAuthor")]
+        public async Task<IActionResult> addAuthor(AuthorDTO authorDto)
+        {
+            authorService.Create(authorDto);
+            return Ok(await authorService.GetAllAsync());
+        }
+
+        [HttpPost("updateAuthor")]
+        public async Task<IActionResult> updateAuthor(AuthorDTO authorDto)
+        {
+            authorService.Update(authorDto);
+            return Ok(await authorService.GetAllAsync());
+        }
+
+        [HttpGet("allAuthors")]
+        public async Task<IActionResult> getAllAuthors()
+        {
+            return Ok(await authorService.GetAllAsync());
+        }
+
+        [HttpDelete("deleteAuthor")]
+        public async Task<IActionResult> deleteAuthor(AuthorDTO author)
+        {
+            authorService.Delete(author);
+            return Ok(await authorService.GetAllAsync());
         }
     }
 }

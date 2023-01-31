@@ -25,5 +25,6 @@ namespace Library_Management_System.Services.BookService
         public List<BookDTO> GetBooksOrderedByTitleAsc();
         public List<BookDTO> GetBooksOrderedByTitleDesc();
         public List<BookDTO> GetBooksReleasedAfterYear(int year);
+        public bool BookHasCopiesBorrowed(Guid bookId);
     }
 }

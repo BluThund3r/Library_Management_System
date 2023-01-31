@@ -142,6 +142,14 @@ namespace Library_Management_System.Services.UserBorrowsCopyService
             return result;
         }
 
+        public UserBorrowsCopyDTO GetByUserIdAndCopyId(Guid userId, Guid copyId)
+        {
+            var temp = repo.FindByUserNameAndCopyId(userId, copyId);
+            if (temp == null)
+                return null;
+            return mapper.Map<UserBorrowsCopyDTO>(temp);
+        }
+
         public UserBorrowsCopyDTO GetUserThatBorrowedCopy(Guid copyId)
         {
             var temp = repo.FindUserWithCopy(copyId);
@@ -166,6 +174,12 @@ namespace Library_Management_System.Services.UserBorrowsCopyService
 
             repo.UpdateRange(ubcs);
             repo.Save();
+        }
+
+        public bool UserAlreadyBorrowedBook(Guid userId, Guid bookId)
+        {
+            var booksBorrowed = repo.FindByUserIdAndBookId(userId, bookId);
+            return booksBorrowed.Count() != 0;
         }
     }
 }

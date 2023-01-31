@@ -25,7 +25,7 @@ namespace Library_Management_System.Services.UserService
         public UserResponseDTO Authenticate(UserRequestDTO requestDTO)
         {
             var user = repo.GetByUserName(requestDTO.UserName);
-            if (user == null || BCryptNet.Verify(requestDTO.Password, user.PasswordHash))
+            if (user == null || !BCryptNet.Verify(requestDTO.Password, user.PasswordHash))
                 return null;
 
             var jwtToken = jwtUtils.GenerateJwtToken(user);

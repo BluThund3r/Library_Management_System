@@ -15,5 +15,7 @@ namespace Library_Management_System.Repositories.BookCopyRepository
         public List<BookCopy> GetBookCopiesByBookTitleOrderByPriceDesc(string title);
         public List<BookCopy> GetBookCopiesByBookTitleAndCoverType(string title, string coverType);
         public BookCopy FindCopyOfBookIfAvailable(Guid bookId);
+        public List<BookCopy> GetAvailableCopiesOfBook(Guid bookId);
+        public List<BookCopy> FindByBookId(Guid bookId);
     }
 }

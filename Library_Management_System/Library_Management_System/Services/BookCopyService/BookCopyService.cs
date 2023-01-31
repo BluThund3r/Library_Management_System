@@ -2,6 +2,7 @@
 using Library_Management_System.Models;
 using Library_Management_System.Models.DTOs;
 using Library_Management_System.Repositories.BookCopyRepository;
+using Library_Management_System.Repositories.UserBorrowsCopyRepository;
 using System.Linq.Expressions;
 
 namespace Library_Management_System.Services.BookCopyService
@@ -9,12 +10,14 @@ namespace Library_Management_System.Services.BookCopyService
     public class BookCopyService: IBookCopyService
     {
         public readonly IBookCopyRepository repo;
+        public readonly IUserBorrowsCopyRepository ubcService;
         public readonly IMapper mapper;
 
-        public BookCopyService(IBookCopyRepository repo, IMapper mapper)
+        public BookCopyService(IBookCopyRepository repo, IMapper mapper, IUserBorrowsCopyRepository ubcService)
         {
             this.repo = repo;
             this.mapper = mapper;
+            this.ubcService = ubcService;
         }
 
         public void Create(BookCopyDTO bcDto)
@@ -79,6 +82,23 @@ namespace Library_Management_System.Services.BookCopyService
             }
 
             return bcDtos;
+        }
+
+        public List<BookCopyDTO> GetAvailableCopiesOfBook(Guid bookId)
+        {
+            var copies = repo.GetAvailableCopiesOfBook(bookId);
+            var copyDtos = new List<BookCopyDTO>();
+            foreach(var elem in copies)
+            {
+                copyDtos.Add(mapper.Map<BookCopyDTO>(elem));
+            }
+            return copyDtos;
+        }
+
+        public int GetAvailableNoCopiesOfBook(Guid bookId)
+        {
+            var bookCopies = GetAvailableCopiesOfBook(bookId);
+            return bookCopies.Count();
         }
 
         public List<BookCopyDTO> GetBookCopiesByBookTitle(string title)
@@ -165,6 +185,17 @@ namespace Library_Management_System.Services.BookCopyService
             return bcDtos;
         }
 
+        public List<BookCopyDTO> GetByBookId(Guid bookId)
+        {
+            var books = repo.FindByBookId(bookId);
+            var result = new List<BookCopyDTO>();
+            foreach(var elem in books)
+            {
+                result.Add(mapper.Map<BookCopyDTO>(elem));
+            }
+            return result;
+        }
+
         public BookCopyDTO GetById(Guid Id)
         {
             var temp = repo.FindById(Id);
@@ -187,6 +218,17 @@ namespace Library_Management_System.Services.BookCopyService
             if (result == null)
                 return null;
             return mapper.Map<BookCopyDTO>(result);
+        }
+
+        public int GetCountByBookId(Guid bookId)
+        {
+            return GetByBookId(bookId).Count();
+        }
+
+        public async Task<bool> IsCopyBorrowed(Guid copyId)
+        {
+            var borrowedCopies = await ubcService.GetAllAsync();
+            return borrowedCopies.Any(bc => bc.CopyId.Equals(copyId));
         }
 
         public void Update(BookCopyDTO bcDto)

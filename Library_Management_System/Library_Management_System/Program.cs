@@ -2,11 +2,11 @@ using Microsoft.EntityFrameworkCore;
 using Library_Management_System.Data;
 using Library_Management_System.Helpers.Extensions;
 using Library_Management_System.Helpers.Seeders;
-using Library_Management_System.Helpers.AppSettings;
 using Library_Management_System.Helpers.Middleware;
 using Library_Management_System.Helpers.JwtUtils;
 using AutoMapper;
 using Library_Management_System.Helpers.Mapper;
+using Library_Management_System.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +23,7 @@ builder.Services.AddRepositories();
 builder.Services.AddServices();
 builder.Services.AddSeeders();
 builder.Services.AddUtils();
-builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection(AppSettings.Settings));
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();

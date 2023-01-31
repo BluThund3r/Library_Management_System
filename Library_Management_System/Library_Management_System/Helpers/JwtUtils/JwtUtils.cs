@@ -9,9 +9,9 @@ namespace Library_Management_System.Helpers.JwtUtils
 {
     public class JwtUtils : IJwtUtils
     {
-        public readonly AppSettings.AppSettings appSettings;
+        public readonly AppSettings appSettings;
 
-        public JwtUtils(IOptions<AppSettings.AppSettings> _appSettings)
+        public JwtUtils(IOptions<AppSettings> _appSettings)
         {
             appSettings = _appSettings.Value;
         }
@@ -27,7 +27,7 @@ namespace Library_Management_System.Helpers.JwtUtils
                         new[] { new Claim("id", user.Id.ToString()), new Claim("username", user.UserName), new Claim("email", user.Email) }
                     ),
                 Expires = DateTime.UtcNow.AddDays(5),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(appPrivateKey), SecurityAlgorithms.Aes256KeyWrap)
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(appPrivateKey), SecurityAlgorithms.HmacSha256Signature)
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);

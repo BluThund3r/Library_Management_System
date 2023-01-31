@@ -13,14 +13,27 @@ namespace Library_Management_System.Repositories.BookCopyRepository
     {
         public BookCopyRepository(ApplicationContext context): base(context) { }
 
+        public List<BookCopy> FindByBookId(Guid bookId)
+        {
+            return table.AsNoTracking().Where(x => x.BookId.Equals(bookId)).ToList();
+        }
+
         public BookCopy FindCopyOfBookIfAvailable(Guid bookId)
         {
-            var borrowedCopies = table.Join(context.UsersBorrowCopies, bc => bc.Id, ubc => ubc.CopyId,
-                (bc, ubc) => new { bc, ubc }).Where(x => x.bc.BookId.Equals(bookId)).Select(x => x.bc).ToList();
+            var borrowedCopiesIds = table.Join(context.UsersBorrowCopies, bc => bc.Id, ubc => ubc.CopyId,
+                (bc, ubc) => new { bc, ubc }).Where(x => x.bc.BookId.Equals(bookId)).Select(x => x.bc.Id).ToList();
 
             var allCopies = table.Where(bc => bc.BookId.Equals(bookId));
 
-            return allCopies.FirstOrDefault(x => borrowedCopies.All(y => y.Id != x.Id));
+            var result = allCopies.FirstOrDefault(x => borrowedCopiesIds.All(y => y != x.Id));
+            context.Entry(result).State = EntityState.Detached;
+            return result;
+        }
+
+        public List<BookCopy> GetAvailableCopiesOfBook(Guid bookId)
+        {
+            var copies = table.Where(c => c.BookId.Equals(bookId) && context.UsersBorrowCopies.All(ubc => ubc.CopyId != c.Id)).ToList();
+            return copies;
         }
 
         public List<BookCopy> GetBookCopiesByBookTitle(string title)

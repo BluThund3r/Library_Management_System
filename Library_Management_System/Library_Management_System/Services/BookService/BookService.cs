@@ -3,18 +3,28 @@ using Library_Management_System.Models;
 using Library_Management_System.Models.DTOs;
 using Library_Management_System.Models.Enums;
 using Library_Management_System.Repositories.BookRepository;
+using Library_Management_System.Services.BookCopyService;
 
 namespace Library_Management_System.Services.BookService
 {
     public class BookService : IBookService
     {
         public readonly IBookRepository repo;
+        public readonly IBookCopyService bookCopyService;
         public readonly IMapper mapper;
 
-        public BookService(IBookRepository repo, IMapper mapper)
+        public BookService(IBookRepository repo, IMapper mapper, IBookCopyService bookCopyService)
         {
             this.repo = repo;
             this.mapper = mapper;
+            this.bookCopyService = bookCopyService;
+        }
+
+        public bool BookHasCopiesBorrowed(Guid bookId)
+        {
+            var allCopies = bookCopyService.GetByBookId(bookId);
+            var availableCopies = bookCopyService.GetAvailableCopiesOfBook(bookId);
+            return allCopies.Count() != availableCopies.Count();
         }
 
         public void Create(BookDTO bookDto)

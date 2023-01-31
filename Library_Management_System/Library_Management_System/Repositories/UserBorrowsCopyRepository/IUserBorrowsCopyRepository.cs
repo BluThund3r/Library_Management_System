@@ -24,6 +24,10 @@ namespace Library_Management_System.Repositories.UserBorrowsCopyRepository
         public List<UserBorrowsCopy> GetAllInvalid();
         public List<UserBorrowsCopy> GetAllInvalidByUserId(Guid userId);
 
+        public UserBorrowsCopy FindByUserNameAndCopyId(Guid userId, Guid copyId);
+
+        public List<UserBorrowsCopy> FindByUserIdAndBookId(Guid userId, Guid bookId);
+
         // Update
         void Update(UserBorrowsCopy ubc);
         void UpdateRange(IEnumerable<UserBorrowsCopy> ubc);

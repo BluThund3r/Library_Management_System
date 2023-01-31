@@ -101,5 +101,18 @@ namespace Library_Management_System.Repositories.UserBorrowsCopyRepository
         {
             return GetAllInvalid().Where(x => x.UserId.Equals(userId)).ToList();
         }
+
+        public UserBorrowsCopy FindByUserNameAndCopyId(Guid userId, Guid copyId)
+        {
+            return table.FirstOrDefault(x => x.UserId.Equals(userId) && x.CopyId.Equals(copyId));
+        }
+
+        public List<UserBorrowsCopy> FindByUserIdAndBookId(Guid userId, Guid bookId)
+        {
+            var result = table.Join(context.BookCopies, ubc => ubc.CopyId, bc => bc.Id,
+                (ubc, bc) => new { ubc, bc }).Where(x => x.bc.BookId.Equals(bookId) && x.ubc.UserId.Equals(userId))
+                .Select(x => x.ubc).ToList();
+            return result;
+        }
     }
 }

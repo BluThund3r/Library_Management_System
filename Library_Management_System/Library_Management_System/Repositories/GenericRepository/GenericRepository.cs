@@ -47,12 +47,20 @@ namespace Library_Management_System.Repositories.GenericRepository
 
         public TEntity FindById(object id)
         {
-            return table.Find(id);
+            var entity = table.Find(id);
+            if(entity == null)
+                return null;
+            context.Entry(entity).State = EntityState.Detached;
+            return entity;
         }
 
         public async Task<TEntity> FindByIdAsync(object id)
         {
-            return await table.FindAsync(id);
+            var entity = await table.FindAsync(id);
+            if (entity == null)
+                return null;
+            context.Entry(entity).State = EntityState.Detached;
+            return entity;
         }
 
         public async Task<List<TEntity>> GetAllAsync()

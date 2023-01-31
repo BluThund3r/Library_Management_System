@@ -25,5 +25,10 @@ namespace Library_Management_System.Services.BookCopyService
         public List<BookCopyDTO> GetBookCopiesOrderedByPriceAsc();
         public List<BookCopyDTO> GetBookCopiesOrderedByPriceDesc();
         public BookCopyDTO GetCopyOfBookIfAnyAvailable(Guid bookId);
+        public List<BookCopyDTO> GetAvailableCopiesOfBook(Guid bookId);
+        public int GetAvailableNoCopiesOfBook(Guid bookId);
+        public Task<bool> IsCopyBorrowed(Guid copyId);
+        public int GetCountByBookId(Guid bookId);
+        public List<BookCopyDTO> GetByBookId(Guid bookId);
     }
 }
