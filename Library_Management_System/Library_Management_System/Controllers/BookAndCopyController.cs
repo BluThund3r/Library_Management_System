@@ -54,6 +54,12 @@ namespace Library_Management_System.Controllers
             return Ok(result);
         }
 
+        [HttpGet("getPublisherByName/{publisherName}")]
+        public IActionResult GetPublisherByName([FromRoute] string publisherName)
+        {
+            return Ok(publisherService.GetPublisherByName(publisherName));
+        }
+
         [HttpGet("getBooksFromPublisher/{publisherName}")]
         public IActionResult GetBooksFromPublisher([FromRoute] string publisherName)
         {
@@ -114,7 +120,6 @@ namespace Library_Management_System.Controllers
             return Ok("Publisher added successfully");
         }
 
-        // Problema de tracking
         [HttpPost("updateBook")] 
         public IActionResult UpdateBook([FromBody] BookDTO bookDTO)
         {

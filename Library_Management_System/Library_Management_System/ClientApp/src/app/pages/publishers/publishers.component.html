@@ -1,0 +1,6 @@
+<mat-card><h2>{{title}}</h2></mat-card>
+<mat-card>
+  <p class="publisher-details" *ngFor="let publisher of publishers; index as i" (click)="navigateToPublisherDetails(publisher.name)">
+    <span class="bold white">{{i + 1}}. {{publisher.name}}</span>
+  </p>
+</mat-card>

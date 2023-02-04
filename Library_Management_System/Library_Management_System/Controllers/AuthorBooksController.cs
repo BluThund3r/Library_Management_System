@@ -30,6 +30,12 @@ namespace Library_Management_System.Controllers
             return Ok(await authorService.GetAllAsync());
         }
 
+        [HttpGet("getAuthorById/{authorId}")]
+        public async Task<IActionResult> GetAuthorById([FromRoute] Guid authorId)
+        {
+            return Ok(await authorService.GetByIdAsync(authorId));
+        }
+
         [HttpGet("getBooksFromAuthor/{authorId}")]
         public IActionResult GetBooksFromAuthor([FromRoute] Guid authorId)
         {

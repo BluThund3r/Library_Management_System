@@ -8,7 +8,18 @@ using AutoMapper;
 using Library_Management_System.Helpers.Mapper;
 using Library_Management_System.Helpers;
 
+var AllowFrontendOrigin = "_AllowFrontendOrigin";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: AllowFrontendOrigin,
+                        policy =>
+                        {
+                            policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                        });
+});
 
 // Add services to the container.
 
@@ -44,6 +55,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors(AllowFrontendOrigin);
 app.UseStaticFiles();
 app.UseRouting();
 app.UseMiddleware<JwtMiddleware>();
