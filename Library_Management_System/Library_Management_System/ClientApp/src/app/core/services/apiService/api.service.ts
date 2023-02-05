@@ -15,10 +15,10 @@ export class ApiService {
   }
 
   post<T>(path: string, body = {}): Observable<any> {
-    return this.httpClient.get(`${this.apiUrl}${path}`, body);
+    return this.httpClient.post(`${this.apiUrl}${path}`, body);
   }
 
   delete<T>(path: string): Observable<any> {
-    return this.httpClient.get(`${this.apiUrl}${path}`);
+    return this.httpClient.delete(`${this.apiUrl}${path}`);
   }
 }

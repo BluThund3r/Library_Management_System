@@ -1,4 +1,4 @@
 <mat-card color="primary"><h1>Library Management App</h1></mat-card>
 <mat-divider></mat-divider>
-<app-menu></app-menu>
+<app-menu *ngIf="authService.isLoggedIn()"></app-menu>
 <router-outlet></router-outlet>

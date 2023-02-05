@@ -37,7 +37,6 @@ export class BookdetailsComponent implements OnInit {
     this.bookService.getBookById(this.bookIdFromRoute).subscribe(data => {
       this.book = data;
       this.publisherService.getPublisherById(this.book.publisherId).subscribe(data1 => {
-        console.log('publisherName -> data: ', data1);
         this.publisherName = data1.name;
       });
     });

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/guards/auth.guard';
 import { AuthorDetailsComponentComponent } from './pages/author-details-component/author-details-component.component';
 import { AuthorComponent } from './pages/author/author.component';
 import { BookdetailsComponent } from './pages/bookdetails/bookdetails.component';
@@ -44,9 +45,18 @@ const routes: Routes = [
   {
     path: "bookDetails/:bookId",
     component: BookdetailsComponent
+  },
+  {
+    path: "admin",
+    canActivate: [AuthGuard], // schimba in AdminGuard
+    loadChildren: () => import("./pages/admin/admin.module").then(m => m.AdminModule)
+  },
+  {
+    path: "auth",
+    loadChildren: () => import("./pages/auth/auth.module").then(am => am.AuthModule)
   }
 ] 
-
+//    adauga si LibrarianGuard
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

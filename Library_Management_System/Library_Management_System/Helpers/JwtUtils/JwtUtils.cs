@@ -24,7 +24,7 @@ namespace Library_Management_System.Helpers.JwtUtils
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(
-                        new[] { new Claim("id", user.Id.ToString()), new Claim("username", user.UserName), new Claim("email", user.Email) }
+                        new[] { new Claim("id", user.Id.ToString()), new Claim("username", user.UserName), new Claim("email", user.Email), new Claim("role", user.Role.ToString()) }
                     ),
                 Expires = DateTime.UtcNow.AddDays(5),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(appPrivateKey), SecurityAlgorithms.HmacSha256Signature)
