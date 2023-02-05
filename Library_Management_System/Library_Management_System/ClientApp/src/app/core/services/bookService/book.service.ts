@@ -10,38 +10,42 @@ export class BookService {
   constructor(private readonly apiService: ApiService) { }
 
   getAllBooks() {
-    this.apiService.get(this.route + "/getAllBooks/");
+    return this.apiService.get(this.route + "/getAllBooks/");
   }
 
   getAllBooksOrderedByTitle() {
-    this.apiService.get(this.route + "/getAllBooksOrderedByTitle/");
+    return this.apiService.get(this.route + "/getAllBooksOrderedByTitle/");
   }
 
   getAllBooksOrderedByTitleDesc() {
-    this.apiService.get(this.route + "/getAllBooksOrderedByTitleDesc/");
+    return this.apiService.get(this.route + "/getAllBooksOrderedByTitleDesc/");
   }
 
-  getBookByTitle(title: string) {
-    this.apiService.get(this.route + `/getBookByTitle/${title}/`);
+  getBooksByTitle(title: string) {
+    return this.apiService.get(this.route + `/getBooksByTitle/${title}/`);
+  }
+
+  getBookById(bookId: string) {
+    return this.apiService.get(this.route + `/getBookById/${bookId}/`)
   }
 
   getBooksByGenre(genre: string) {
-    this.apiService.get(this.route + `/getBooksByGenre/${genre}/`);
+    return this.apiService.get(this.route + `/getBooksByGenre/${genre}/`);
   }
 
   getNoCopiesAvailableOfBook(bookId: string) {
-    this.apiService.get(this.route + `/getNoCopiesAvailableOfBook/${bookId}/`);
+    return this.apiService.get(this.route + `/getNoCopiesAvailableOfBook/${bookId}/`);
   }
 
   addBook(book: Book) {
-    this.apiService.post(this.route + "/addBook/", book);
+    return this.apiService.post(this.route + "/addBook/", book);
   }
 
   updateBook(book: Book) {
-    this.apiService.post(this.route + "/updateBook/", book);
+    return this.apiService.post(this.route + "/updateBook/", book);
   }
 
   deleteBook(bookId: string) {
-    this.apiService.delete(this.route + `/deleteBook/${bookId}/`);
+    return this.apiService.delete(this.route + `/deleteBook/${bookId}/`);
   }
 }

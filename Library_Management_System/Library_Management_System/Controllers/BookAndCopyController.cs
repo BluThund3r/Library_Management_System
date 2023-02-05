@@ -33,6 +33,12 @@ namespace Library_Management_System.Controllers
             return Ok(await bookService.GetAllAsync());
         }
 
+        [HttpGet("getBookById/{bookId}")]
+        public async Task<IActionResult> GetBookById(Guid bookId)
+        {
+            return Ok(await bookService.GetByIdAsync(bookId));
+        }
+
         [HttpGet("getAllBooksOrderedByTitle")]
         public IActionResult GetAlBooksOrderedByTitle()
         {
@@ -45,13 +51,19 @@ namespace Library_Management_System.Controllers
             return Ok(bookService.GetBooksOrderedByTitleDesc());
         }
 
-        [HttpGet("getBookByTitle/{title}")]
-        public IActionResult GetBookByTitle([FromRoute] string title)
+        [HttpGet("getBooksByTitle/{title}")]
+        public IActionResult GetBooksByTitle([FromRoute] string title)
         {
             var result = bookService.GetBooksByTitle(title);
             if (result == null)
                 return NoContent();
             return Ok(result);
+        }
+
+        [HttpGet("getPublisherById/{publisherId}")]
+        public async Task<IActionResult> GetPublisherById(Guid publisherId)
+        {
+            return Ok(await publisherService.GetByIdAsync(publisherId));
         }
 
         [HttpGet("getPublisherByName/{publisherName}")]
@@ -92,6 +104,12 @@ namespace Library_Management_System.Controllers
         public IActionResult GetNoCopiesAvailableOfBook([FromRoute] Guid bookId)
         {
             return Ok(bookCopyService.GetAvailableNoCopiesOfBook(bookId));
+        }
+
+        [HttpGet("getAvailableCopiesOfBook/{bookId}")]
+        public IActionResult GetAvailableCopiesOfBook([FromRoute] Guid bookId)
+        {
+            return Ok(bookCopyService.GetAvailableCopiesOfBook(bookId));
         }
 
 

@@ -24,13 +24,7 @@ export class AuthorComponent implements OnInit {
   }
 
   navigateToAuthorDetails(authorId: string): void {
-    try {
       this.router.navigate(['/authorDetails', authorId]);
-    }
-    catch {
-      this.router.navigate(['/error']);
-    }
-    
   }
 
 }

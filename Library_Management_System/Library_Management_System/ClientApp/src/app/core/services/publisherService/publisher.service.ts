@@ -15,8 +15,13 @@ export class PublisherService {
     return this.apiService.get(this.route + "/getAllPublishers/");
   }
 
+  getPublisherById(publisherId: string) {
+    console.log("am ajuns in publisherService: ", publisherId);
+    return this.apiService.get(this.route + `/getPublisherById/${publisherId}/`);
+  }
+
   getBookFromPublisher(publisherName: string) {
-    return this.apiService.get(this.route + `/getBooksFromPublisher/${publisherName}`)
+    return this.apiService.get(this.route + `/getBooksFromPublisher/${publisherName}`);
   }
 
   getPublisherByName(publisherName: string) {
