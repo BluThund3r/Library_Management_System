@@ -5,25 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './pages/auth/auth.module';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './pages/home/home.component';
 import { MenuComponent } from './shared/menu/menu.component';
-import { AuthorComponent } from './pages/author/author.component';
-import { BookdetailsComponent } from './pages/bookdetails/bookdetails.component';
-import { BooksComponent } from './pages/books/books.component';
 import { MatCardModule, MatDividerModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthorDetailsComponentComponent } from './pages/author-details-component/author-details-component.component';
-import { GenreTransformPipe } from './core/pipes/genreTransform/genre-transform.pipe';
-import { RoleTransformPipe } from './core/pipes/roleTransform/role-transform.pipe';
-import { CoverTypeTransformPipe } from './core/pipes/coverTypeTransform/cover-type-transform.pipe';
-import { LanguageTransformPipe } from './core/pipes/languageTransform/language-transform.pipe';
-import { PublishersComponent } from './pages/publishers/publishers.component';
-import { PublisherDetailsComponent } from './pages/publisher-details/publisher-details.component';
 import { AdminModule } from './pages/admin/admin.module';
-
-
+import { BasicUserModule } from './pages/basicUser/basic-user.module';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -33,18 +21,7 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    MenuComponent,
-    AuthorComponent,
-    BookdetailsComponent,
-    BooksComponent,
-    AuthorDetailsComponentComponent,
-    GenreTransformPipe,
-    RoleTransformPipe,
-    CoverTypeTransformPipe,
-    LanguageTransformPipe,
-    PublishersComponent,
-    PublisherDetailsComponent
+    MenuComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -56,6 +33,7 @@ export function tokenGetter() {
     MatDividerModule,
     MatButtonModule,
     AdminModule,
+    BasicUserModule,
     AuthModule,
     JwtModule.forRoot({
       config: {

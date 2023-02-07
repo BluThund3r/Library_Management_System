@@ -1,0 +1,28 @@
+<mat-card>
+  <h2>{{title}}</h2>
+</mat-card>
+
+<mat-card>
+  <mat-card id="book-details">
+    Title: <span class="bold"> {{book.title}} </span> <br />
+    Publisher: <span class="bold"> {{publisherName}} </span> <br />
+    Release Date: <span class="bold"> {{book.releaseDate | date}} </span> <br />
+    Genre: <span class="bold"> {{book.genre | genreTransform}} </span> <br />
+    Language: <span class="bold"> {{book.language | languageTransform}} </span> <br />
+    Number of pages: <span class="bold"> {{book.noPages}} </span>
+  </mat-card>
+
+  <mat-card *ngIf="bookCopies.length == 0" class="books-background" id="no-books">
+    <span id="no-books">
+      There are no available copies of the book "{{book.title}}"
+    </span>
+  </mat-card>
+
+  <mat-card *ngIf="bookCopies.length > 0" class="books-background">
+    <p class="copy" *ngFor="let copy of bookCopies">
+      Cover Type: {{copy.coverType | coverTypeTransform }}<br />
+      Price: {{copy.price}} RON <br />
+    </p>
+  </mat-card>
+</mat-card>
+

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminRoutingModule } from './admin-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -12,7 +13,9 @@ import { AdminRoutingModule } from './admin-routing.module';
     AdminDashboardComponent
   ],
   imports: [
-    CommonModule, AdminRoutingModule
+    CommonModule,
+    AdminRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

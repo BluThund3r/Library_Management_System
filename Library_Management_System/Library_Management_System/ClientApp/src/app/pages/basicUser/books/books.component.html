@@ -1,0 +1,9 @@
+<mat-card>
+  <h2>{{title}}</h2>
+  <mat-card>
+    <p class="book-details" (click)="navigateToBookDetails(book.id)" *ngFor="let book of books; index as i">
+      <span class="bold white">{{i + 1}}. {{book.title}}</span>
+    </p>
+  </mat-card>
+</mat-card>
+

@@ -1,0 +1,8 @@
+<mat-card>
+  <h2>{{title}}</h2>
+  <mat-card>
+    <p class="author-details" *ngFor="let author of authors; index as i" (click)="navigateToAuthorDetails(author.id)">
+      <span class="bold white">{{i + 1}}. {{author.firstName + " " + author.lastName}}</span>
+    </p>
+  </mat-card>
+</mat-card>

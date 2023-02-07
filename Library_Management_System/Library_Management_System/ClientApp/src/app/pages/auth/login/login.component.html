@@ -1,1 +1,26 @@
-<p>login works!</p>
+<mat-card>
+  <h2>{{title}}</h2>
+</mat-card>
+<mat-card>
+  <div class="center-inside">
+    <mat-card class="center-inside" id="form-holder">
+      <h3>LogIn Form</h3>
+      <form [formGroup]="loginForm">
+        <mat-form-field appearance="outline" class="center-inside">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="userName">
+        </mat-form-field><br />
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" />
+        </mat-form-field>
+      </form>
+      <button mat-raised-button color="primary" (click)="checkForm()">Submit</button>
+    </mat-card>
+    <br /><br /><br />
+    <span id="big-bold">OR</span>
+    <br /><br />
+    <span id="register-redirect" (click)="navigateToRegister()">Create an account</span>
+    <br /><br />
+  </div>
+</mat-card>

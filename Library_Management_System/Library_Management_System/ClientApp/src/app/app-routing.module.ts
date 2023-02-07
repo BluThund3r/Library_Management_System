@@ -1,59 +1,32 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './core/guards/auth.guard';
-import { AuthorDetailsComponentComponent } from './pages/author-details-component/author-details-component.component';
-import { AuthorComponent } from './pages/author/author.component';
-import { BookdetailsComponent } from './pages/bookdetails/bookdetails.component';
-import { BooksComponent } from './pages/books/books.component';
-import { HomeComponent } from './pages/home/home.component';
-import { PublisherDetailsComponent } from './pages/publisher-details/publisher-details.component';
-import { PublishersComponent } from './pages/publishers/publishers.component';
+import { AdminGuard } from './core/guards/adminGuard/admin.guard';
+import { AuthGuard } from './core/guards/authGuard/auth.guard';
+import { HomeComponent } from './pages/basicUser/home/home.component';
   
 const routes: Routes = [
   {
-    path: "authors",
-    component: AuthorComponent
-  },
-  {
-    path: "authorDetails/:authorId",
-    component: AuthorDetailsComponentComponent
-  },
-  {
-    path: "books",
-    component: BooksComponent
-  },
-  {
-    path: "publishers",
-    component: PublishersComponent
-  },
-  {
-    path: "home",
-    component: HomeComponent
-  },
-  {
     path: "",
-    component: HomeComponent
+    canActivate: [AuthGuard],
+    loadChildren: () => import("./pages/basicUser/basic-user.module").then(m => m.BasicUserModule)
   },
   {
-    path: "publisherDetails/:publisherName",
-    component: PublisherDetailsComponent
-  },
-  {
-    path: "books",
-    component: BooksComponent
-  },
-  {
-    path: "bookDetails/:bookId",
-    component: BookdetailsComponent
+    path: "basic-user",
+    canActivate: [AuthGuard],
+    loadChildren: () => import("./pages/basicUser/basic-user.module").then(m => m.BasicUserModule)
   },
   {
     path: "admin",
-    canActivate: [AuthGuard], // schimba in AdminGuard
+    canActivate: [AdminGuard],
     loadChildren: () => import("./pages/admin/admin.module").then(m => m.AdminModule)
   },
   {
     path: "auth",
     loadChildren: () => import("./pages/auth/auth.module").then(am => am.AuthModule)
+  },
+  {
+    path: "**",
+    component: HomeComponent
   }
 ] 
 //    adauga si LibrarianGuard
