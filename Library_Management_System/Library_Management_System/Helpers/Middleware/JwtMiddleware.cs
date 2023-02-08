@@ -14,7 +14,7 @@ namespace Library_Management_System.Helpers.Middleware
 
         public async Task Invoke(HttpContext httpContext, IUserService userService, IJwtUtils jwtUtils)
         {
-            var token = httpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split("").Last();
+            var token = httpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
             var userId = jwtUtils.ValidateJwtToken(token);
             if(userId != Guid.Empty)
             {

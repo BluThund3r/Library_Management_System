@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-home.component.css']
 })
 export class AdminHomeComponent implements OnInit {
-
+  public title: string = "Admin Home";
   constructor() { }
 
   ngOnInit(): void {

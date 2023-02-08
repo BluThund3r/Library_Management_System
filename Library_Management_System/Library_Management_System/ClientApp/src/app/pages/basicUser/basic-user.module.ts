@@ -13,6 +13,7 @@ import { RoleTransformPipe } from '../../core/pipes/roleTransform/role-transform
 import { CoverTypeTransformPipe } from '../../core/pipes/coverTypeTransform/cover-type-transform.pipe';
 import { LanguageTransformPipe } from '../../core/pipes/languageTransform/language-transform.pipe';
 import { HomeComponent } from './home/home.component';
+import { PipesModule } from '../../pipes/pipes.module';
 
 
 
@@ -25,17 +26,14 @@ import { HomeComponent } from './home/home.component';
     HomeComponent,
     PublisherDetailsComponent,
     BooksComponent,
-    BookdetailsComponent,
-    GenreTransformPipe,
-    RoleTransformPipe,
-    CoverTypeTransformPipe,
-    LanguageTransformPipe
+    BookdetailsComponent
   ],
   imports: [
     CommonModule, BasicUserRoutingModule,
     MatCardModule,
     MatDividerModule,
-    MatButtonModule
+    MatButtonModule,
+    PipesModule
   ]
 })
 export class BasicUserModule { }

@@ -1,0 +1,19 @@
+.user-details {
+  background-color: purple;
+  border: 1px solid rgb(71, 14, 96);
+  padding: 1%;
+  border-radius: 5px;
+}
+
+.user-details:hover {
+  cursor: pointer;
+  box-shadow: 2px 2px rgb(71, 14, 96);
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.white {
+  color: white;
+}

@@ -1,4 +1,5 @@
 ﻿using Library_Management_System.Models;
+using Library_Management_System.Models.DTOs.UserDTO;
 using Library_Management_System.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -23,7 +24,7 @@ namespace Library_Management_System.Helpers.Attributes
                 context.Result = unauthorizedStatusObject;
             }
 
-            var user = (User)context.HttpContext.Items["User"];
+            var user = (UserInfoDTO)context.HttpContext.Items["User"];
 
             if (user == null || !roles.Contains(user.Role))
                 context.Result = unauthorizedStatusObject;

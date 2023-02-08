@@ -1,0 +1,13 @@
+#centered-inside {
+    display: grid;
+    place-items: center;
+}
+
+#emph {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
+}

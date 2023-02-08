@@ -88,6 +88,13 @@ namespace Library_Management_System.Controllers
 
 
         [Authorization(Role.Admin)]
+        [HttpGet("getUserById/{userId}")]
+        public IActionResult GetUserByIdAsync([FromRoute] Guid userId)
+        {
+            return Ok(userService.GetById(userId));
+        }
+
+        [Authorization(Role.Admin)]
         [HttpGet("getAllUsersAsync")]
         public async Task<List<UserInfoDTO>> GetAllAsync()
         {

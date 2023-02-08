@@ -1,1 +1,10 @@
-<p>admin-dashboard works!</p>
+<mat-card>
+  <h2>{{title}}</h2>
+</mat-card>
+<mat-card>
+  <p class="user-details white" *ngFor="let user of allUsers" (click)="navigateToUserDetails(user.id)">
+    User Id: <span class="bold">{{user.id}}</span> <br />
+    UserName: <span class="bold">{{user.userName}}</span> <br />
+    User Role: <span class="bold">{{user.role | roleTransform}}</span>
+  </p>
+</mat-card>

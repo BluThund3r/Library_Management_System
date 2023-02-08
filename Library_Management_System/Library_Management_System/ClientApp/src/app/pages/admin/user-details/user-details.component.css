@@ -1,0 +1,11 @@
+.user-details {
+  font-size: x-large;
+  color: white;
+  padding: inherit;
+  border-radius: 10px;
+  background-color: #673ab7;
+}
+
+.bold {
+    font-weight: bold;
+}
