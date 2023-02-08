@@ -4,7 +4,6 @@ import { AuthorComponent } from './author/author.component';
 import { AuthorDetailsComponentComponent } from './author-details-component/author-details-component.component';
 import { BooksComponent } from './books/books.component';
 import { PublishersComponent } from './publishers/publishers.component';
-import { HomeComponent } from './home/home.component';
 import { PublisherDetailsComponent } from './publisher-details/publisher-details.component';
 import { BookdetailsComponent } from './bookdetails/bookdetails.component';
 import { BasicUserRoutingModule } from './basic-user-routing.module';
@@ -13,6 +12,7 @@ import { GenreTransformPipe } from '../../core/pipes/genreTransform/genre-transf
 import { RoleTransformPipe } from '../../core/pipes/roleTransform/role-transform.pipe';
 import { CoverTypeTransformPipe } from '../../core/pipes/coverTypeTransform/cover-type-transform.pipe';
 import { LanguageTransformPipe } from '../../core/pipes/languageTransform/language-transform.pipe';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -29,7 +29,7 @@ import { LanguageTransformPipe } from '../../core/pipes/languageTransform/langua
     GenreTransformPipe,
     RoleTransformPipe,
     CoverTypeTransformPipe,
-    LanguageTransformPipe,
+    LanguageTransformPipe
   ],
   imports: [
     CommonModule, BasicUserRoutingModule,

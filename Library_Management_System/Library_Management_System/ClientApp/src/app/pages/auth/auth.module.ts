@@ -6,7 +6,6 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatCardModule, MatIconModule, MatInputModule } from '@angular/material'
 import { MatFormFieldModule } from '@angular/material/form-field';
-;
 
 
 @NgModule({

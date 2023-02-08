@@ -39,13 +39,13 @@ namespace Library_Management_System.Controllers
             userDto.Id = Guid.Empty;
             var userByUserName = userService.GetByUserName(userDto.UserName);
             if (userByUserName != null)
-                return Forbid($"The Username {userDto.UserName} is already taken");
+                return BadRequest($"The Username {userDto.UserName} is already taken");
             var userByEmail = userService.GetByEmail(userDto.Email);
             if (userByEmail != null)
-                return Forbid($"There is another account linked to the e-mail address {userDto.Email}");
+                return BadRequest($"There is another account linked to the e-mail address {userDto.Email}");
             userDto.Role = Role.BasicUser;  // sa ma asigur ca nu am surprize
             userService.CreateUser(userDto);
-            return Ok("Account created successfully");
+            return Ok();
 
         }
 

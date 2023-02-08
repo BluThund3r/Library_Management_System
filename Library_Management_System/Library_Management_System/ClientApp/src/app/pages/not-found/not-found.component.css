@@ -1,0 +1,16 @@
+#wrapper {
+    display:grid;
+    place-items: center;
+    font-family: sans-serif;
+    height: 60vh;
+}
+
+.err {
+    font-size: xx-large;
+    font-weight: bold;
+    text-align:center;
+}
+
+#error-status {
+  color: red;
+}

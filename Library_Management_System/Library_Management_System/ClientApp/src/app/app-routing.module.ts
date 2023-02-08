@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './core/guards/adminGuard/admin.guard';
 import { AuthGuard } from './core/guards/authGuard/auth.guard';
-import { HomeComponent } from './pages/basicUser/home/home.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
   
 const routes: Routes = [
   {
@@ -26,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: "**",
-    component: HomeComponent
+    component: NotFoundComponent
   }
 ] 
 //    adauga si LibrarianGuard

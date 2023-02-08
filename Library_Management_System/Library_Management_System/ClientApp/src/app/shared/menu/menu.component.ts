@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from '../../core/services/authService/auth.service';
+import { Role } from '../../data/enums/role';
 
 @Component({
   selector: 'app-menu',
@@ -9,9 +11,17 @@ import { AuthService } from '../../core/services/authService/auth.service';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private readonly router: Router, private readonly authService: AuthService) { }
+  constructor(private readonly router: Router, private readonly authService: AuthService, private readonly jwtHelper: JwtHelperService) { }
 
   ngOnInit(): void {
+  }
+
+  loggedUserRole(): number {
+    var token = localStorage.getItem('token');
+    if (token == null)
+      return 0;
+    var roleString: string = this.jwtHelper.decodeToken().role;
+    return (<any>Role)[roleString]; 
   }
 
   navigateToAuthors(): void {
@@ -33,6 +43,14 @@ export class MenuComponent implements OnInit {
   logOut() {
     this.router.navigate(['/auth/login']);
     this.authService.logout();
+  }
+
+  navigateToUsers() {
+    this.router.navigate(['/admin/users']);
+  }
+
+  navigateToAdminHome() {
+    this.router.navigate(['/admin/']);
   }
 
 }

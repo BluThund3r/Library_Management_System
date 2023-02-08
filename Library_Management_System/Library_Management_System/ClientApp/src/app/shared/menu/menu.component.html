@@ -3,5 +3,7 @@
   <button mat-raised-button color="primary" (click)="navigateToAuthors()">Authors</button>
   <button mat-raised-button color="primary" (click)="navigateToBooks()">Books</button>
   <button mat-raised-button color="primary" (click)="navigateToPublishers()">Publishers</button>
-  <button mat-raised-button id="logout" (click)="logOut()">Log Out</button>
+  <button *ngIf="loggedUserRole() == 1" mat-raised-button color="accent" (click)="navigateToAdminHome()">Admin Home</button>
+  <button *ngIf="loggedUserRole() == 1" mat-raised-button color="accent" (click)="navigateToUsers()">Users</button>
+  <button mat-raised-button color="warn" (click)="logOut()">Log Out</button>
 </mat-card>

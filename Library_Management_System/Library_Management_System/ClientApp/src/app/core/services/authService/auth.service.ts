@@ -46,7 +46,7 @@ export class AuthService {
   }
 
   register(userInfo: User) {
-    return this.apiService.post(this.route + "createAccount", userInfo);
+    return this.apiService.post(this.route + "/createAccount/", userInfo);
   }
 
   isLoggedIn() {

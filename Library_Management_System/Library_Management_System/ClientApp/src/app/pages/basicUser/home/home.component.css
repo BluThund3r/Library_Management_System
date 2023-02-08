@@ -1,0 +1,16 @@
+#centered-inside {
+    display: grid;
+    place-items: center;
+}
+
+.xxlarge {
+    font-size: xx-large;
+}
+
+.xlarge {
+    font-size: x-large;
+}
+
+.bold {
+    font-weight: bold;
+}

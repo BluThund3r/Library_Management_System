@@ -25,7 +25,8 @@ export class AdminGuard implements CanActivate {
     if (token === null)
       return false;
     const loggedUser = this.jwtHelper.decodeToken(token);
-    if (parseInt(loggedUser.role) != Role.Admin)
+    var role: Role = (<any>Role)[loggedUser.role];
+    if (role != Role.Admin)
       return false;
 
     return true;
