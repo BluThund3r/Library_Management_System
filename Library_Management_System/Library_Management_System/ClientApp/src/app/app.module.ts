@@ -6,7 +6,7 @@ import { AuthModule } from './pages/auth/auth.module';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './shared/menu/menu.component';
-import { MatCardModule, MatDividerModule } from '@angular/material';
+import { MatCardModule, MatDividerModule, MatIconModule, MatTooltipModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,6 +35,8 @@ export function tokenGetter() {
     AdminModule,
     BasicUserModule,
     AuthModule,
+    MatIconModule,
+    MatTooltipModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

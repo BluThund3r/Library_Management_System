@@ -1,4 +1,23 @@
-<mat-card color="primary"><h1>Library Management App</h1></mat-card>
-<mat-divider></mat-divider>
+<mat-card color="primary" id="top-wrapper">
+  <h1 id="title">Library Management App</h1>
+  <mat-card id="user-info" *ngIf="authService.isLoggedIn()">
+    <span style="display: grid; padding: 1%;">
+      <span>Logged In as <span class="bold">{{staticLoggedUser.userName}}</span> </span>
+      <span class="smaller-text">{{staticLoggedUser.email}}</span>
+    </span>
+    <button class="account" mat-mini-fab color="disabled" matTooltip="Account"><mat-icon aria-hidden="false">account_circle</mat-icon></button>
+    <button class="logout" mat-mini-fab color="warn" (click)="logOut()" matTooltip="Log Out"><mat-icon aria-hidden="false">logout</mat-icon></button>
+  </mat-card>
+</mat-card>
+<mat-card id="little-user-info" *ngIf="authService.isLoggedIn()">
+  <span style="display: grid; padding: 1%; ">
+    <span>Logged In as <span class="bold">{{staticLoggedUser.userName}}</span> </span>
+    <span class="smaller-text">{{staticLoggedUser.email}}</span>
+  </span>
+  <button id="medium-account" class="account" mat-raised-button color="disabled" matTooltip="Account"><mat-icon aria-hidden="false">account_circle</mat-icon> Account</button>
+  <button id="medium-logout" class="logout" mat-raised-button color="warn" (click)="logOut()"><mat-icon aria-hidden="false">logout</mat-icon> Log Out</button>
+  <button id="small-account" class="account" mat-mini-fab color="disabled" matTooltip="Account"><mat-icon aria-hidden="false">account_circle</mat-icon></button>
+  <button id="small-logout" class="logout" mat-mini-fab color="warn" (click)="logOut()" matTooltip="Log Out"><mat-icon aria-hidden="false">logout</mat-icon></button>
+</mat-card>
 <app-menu *ngIf="authService.isLoggedIn()"></app-menu>
 <router-outlet></router-outlet>

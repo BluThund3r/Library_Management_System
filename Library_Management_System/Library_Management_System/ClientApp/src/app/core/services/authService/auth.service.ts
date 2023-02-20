@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject, tap } from 'rxjs';
+import { AppComponent } from '../../../app.component';
 import { User } from '../../../data/interfaces/user';
 import { UserRequest } from '../../../data/interfaces/userRequest';
 import { ApiService } from '../apiService/api.service';
@@ -38,7 +38,15 @@ export class AuthService {
       .subscribe(data => {
         localStorage.setItem("token", data.token);
         this.isUserLogged = true;
-        this.router.navigate(['/basic-user/home']);
+        this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/basic-user/home']);
+          var tempUser = this.jwtHelper.decodeToken(data.token);
+          AppComponent.loggedUser = {
+            userName: tempUser.username,
+            role: tempUser.role,
+            email: tempUser.email 
+          }
+        }); 
       }, err => {
         if (err.status == 400)
           alert("Username or password invalid!");
@@ -56,5 +64,18 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token');
     this.isUserLogged = false;
+  }
+
+  getLoggedInUser() {
+    let token = localStorage.getItem("token");
+    if (!token)
+      return null;
+
+    let loggedUser = this.jwtHelper.decodeToken(token);
+    return {
+      userName: loggedUser.username,
+      email: loggedUser.email,
+      role: loggedUser.role
+    };
   }
 }

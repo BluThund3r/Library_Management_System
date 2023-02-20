@@ -40,11 +40,6 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/basic-user/home']);
   }
 
-  logOut() {
-    this.router.navigate(['/auth/login']);
-    this.authService.logout();
-  }
-
   navigateToUsers() {
     this.router.navigate(['/admin/users']);
   }

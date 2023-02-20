@@ -1,8 +1,12 @@
-#meniu > *  {
-    margin: 1% 2%;
+#meniu{
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-evenly;
 }
 
-#logout {
-   background-color: orangered;
-   color:white;
+#meniu > * {
+    flex-grow: 1;
+    flex-basis: 20%;
 }
